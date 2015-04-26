@@ -22,7 +22,6 @@
 ### Principal Component Analysis
 ### Single Value Decomposition
 
-
 ## Prediction Models
 
 ### Supervised Learning
@@ -39,6 +38,11 @@
 #### K-mean
 #### Hierarchical
 #### NMF
+
+### Model Selection, Parameter Optimization 
+#### Cross Validation
+#### Grid Search
+#### Gradient Descent
 
 
 ## Visualization
