@@ -1,5 +1,7 @@
 # Important Data Visualization Demo in Data Science
 
+{:toc max_level=3 }
+
 #### Curve Fitting
 
 
@@ -16,6 +18,9 @@ from sklearn import ensemble
 from sklearn import datasets
 from sklearn.utils import shuffle
 from sklearn.metrics import mean_squared_error
+import seaborn as sns
+%matplotlib inline
+sns.set(style="darkgrid")
 
 # Load data
 boston = datasets.load_boston()
@@ -95,6 +100,15 @@ f.tight_layout()
 ![correlation](Images/many_pairwise_correlations.png)
 
 #### Decision Boundary
+Example:
+- Nearest Neighbors Classification
+
+
+#### Confusion Matrix
+
+
+#### ROC Curve
+
 
 
 #### Time Series
