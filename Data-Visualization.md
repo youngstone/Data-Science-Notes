@@ -1,11 +1,16 @@
 # Important Data Visualization Demo in Data Science
 
-{:toc max_level=3 }
 
-#### Curve Fitting
+#### Bar Charts
+
+#### Line Charts
+- Curve Fitting
 
 
-#### Histogram
+#### Scatterplots
+
+
+#### Histograms
 
 
 #### Feature Importance
@@ -18,9 +23,7 @@ from sklearn import ensemble
 from sklearn import datasets
 from sklearn.utils import shuffle
 from sklearn.metrics import mean_squared_error
-import seaborn as sns
 %matplotlib inline
-sns.set(style="darkgrid")
 
 # Load data
 boston = datasets.load_boston()
@@ -168,6 +171,57 @@ f.tight_layout()
 #### Decision Boundary
 Example:
 - Nearest Neighbors Classification
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+from sklearn import neighbors, datasets
+import seaborn as sns
+%matplotlib inline
+sns.set(style="darkgrid")
+
+n_neighbors = 15
+
+# import some data to play with
+iris = datasets.load_iris()
+X = iris.data[:, :2]  # we only take the first two features. We could
+                      # avoid this ugly slicing by using a two-dim dataset
+y = iris.target
+
+h = .01  # step size in the mesh
+
+# Create color maps
+cmap_light = ListedColormap(['#FFAAAA', '#AAFFAA', '#AAAAFF'])
+cmap_bold = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+
+for weights in ['uniform', 'distance']:
+    # we create an instance of Neighbours Classifier and fit the data.
+    clf = neighbors.KNeighborsClassifier(n_neighbors, weights=weights)
+    clf.fit(X, y)
+
+    # Plot the decision boundary. For that, we will assign a color to each
+    # point in the mesh [x_min, m_max]x[y_min, y_max].
+    x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+
+    # Put the result into a color plot
+    Z = Z.reshape(xx.shape)
+    plt.figure()
+    plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
+
+    # Plot also the training points
+    plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold)
+    plt.xlim(xx.min(), xx.max())
+    plt.ylim(yy.min(), yy.max())
+    plt.title("3-Class classification (k = %i, weights = '%s')"
+              % (n_neighbors, weights))
+
+plt.show()
+```
 
 
 #### Confusion Matrix

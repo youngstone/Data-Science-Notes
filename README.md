@@ -1,6 +1,11 @@
 # Notes for Data Science Study
 
-## Data Acquizition, Management & Preprocessing
+My own notes and cheat sheet for data science
+
+## 1. Visualization
+[Important Data Visualization Demo in Data Science](Data-Visualization.md)
+
+## 2. Data Acquizition, Management & Preprocessing
 
 ### SQL
 
@@ -11,18 +16,18 @@
 ### Pandas
 ### Graphlab
 
-## Statistics
+## 3. Statistics
 
 ### Bayesian
 ### Hypothesis Testing
 ### Linear Regression
 ### Regularized Linear Regression
 
-## Feature Selection and Dimension Reduction
+## 4. Feature Selection and Dimension Reduction
 ### Principal Component Analysis
 ### Single Value Decomposition
 
-## Prediction Models
+## 5. Prediction Models
 
 ### Supervised Learning
 
@@ -45,6 +50,3 @@
 #### Gradient Descent
 
 
-## Visualization
-### Charts
-### Graphs
