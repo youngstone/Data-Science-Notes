@@ -1,27 +1,85 @@
 # Important Data Visualization Demo in Data Science
 
-1. [Bar Charts](#Bar-Charts)
-1. [Line Charts](#Line-Charts)
-1. [Scatterplots](#Scatterplots)
-1. [Histograms](#Histograms)
-1. [Feature Importance](#Feature-Importance)
-1. [](#)
-1. [](#)
-1. [](#)
-1. [](#)
-1. [](#)
+
+#### Bar Charts, Histograms, Line Charts
+- curve fitting, with MOM and MLE
+
+```python
+# Function to plot the MOM and MLE on top of the data
+def plot_mom_mle(df, col, ax):
+    data = df[col]
+
+    sample_mean = data.mean()
+    sample_var = np.sum(np.square(data - sample_mean)) /  (data.count() - 1)
+
+    alpha = sample_mean**2 / sample_var
+    beta = sample_var / sample_mean
+
+    # Use MLE to fit a gamma distribution
+    ahat, loc, bhat = scs.gamma.fit(df[month], floc=0)
+    alpha_mle, beta_mle = ahat, 1./bhat
+
+    gamma_rv = scs.gamma(alpha, beta)
+    mle_gamma_rv = scs.gamma(alpha_mle, beta_mle)
+
+    x_vals = np.linspace(data.min(), data.max())
+
+    gamma_p = gamma_rv.pdf(x_vals)
+    mle_gamma_p = mle_gamma_rv.pdf(x_vals)
+
+    ax.plot(x_vals, gamma_p, color='r', alpha=0.4, linestyle='--', label='MOM')
+    ax.plot(x_vals, mle_gamma_p, color='g', alpha=0.4, label='MLE')
+    ax.plot(x_vals, kde_p, color='b', alpha=0.4, label='KDE', linestyle='--' )
+
+    ax.set_xlabel('Rainfall')
+    ax.set_ylabel('Probability Density')
+    ax.set_title(col)
+
+    ax.set_xlim(0, 12)
+    ax.set_ylim(0., .35)
+
+    label = 'alpha = %.2f\nbeta = %.2f' % (alpha, beta)
+    ax.annotate(label, xy=(8, 0.3))
 
 
-### Bar Charts
+months = df.columns - ['Year']
+months_df = df[months]
 
-### Line Charts
+# Use pandas to get the histogram, the axes as tuples are returned
+axes = months_df.hist(bins=20, normed=1,
+                    grid=0, edgecolor='none',
+                    figsize=(15, 10))
+
+# Iterate through the axes and plot the line on each of the histogram
+for month, ax in zip(months, axes.flatten()):
+    plot_estimate(months_df, month, ax)
+
+```
+
+![Bar plot and line plot](Images/feature_importance.png)
+
+```python
+from scipy.stats import kde
+
+x1 = np.random.normal(0, 2, 500)
+x2 = np.random.normal(4, 1, 500)
+
+# Append by row
+x = np.r_[x1, x2]
+
+density = kde.gaussian_kde(x)
+xgrid = np.linspace(x.min(), x.max(), 100)
+plt.hist(x, bins=50, normed=True)
+plt.plot(xgrid, density(xgrid), 'r-')
+plt.ylabel('Probability Density')
+plt.xlabel('Value')
+plt.title("KDE of Bimodal Normal")
+```
+![kde](Images/kde.png)
 
 
 #### Scatterplots
 - Curve Fitting
-
-
-#### Histograms
 
 
 #### Feature Importance
@@ -238,17 +296,6 @@ plt.show()
 ![Decision Boundary pic 2](Images/NB-decision-boundary-2.png)
 
 
-#### Confusion Matrix
-
-
-#### ROC Curve
-
-
-
-#### Time Series
-
-
-
 #### Network and Graphs
 
 Tutorials:
@@ -260,4 +307,13 @@ Patent Citation Network
 
 Facebook Friend Network
 ![Facebook Friend Network](Images/gephi_facebook_friend_network.png)
+
+
+#### Confusion Matrix
+
+
+#### ROC Curve
+
+
+#### Time Series
 
