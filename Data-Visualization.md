@@ -1,13 +1,24 @@
 # Important Data Visualization Demo in Data Science
 
+1. [Bar Charts](#Bar-Charts)
+1. [Line Charts](#Line-Charts)
+1. [Scatterplots](#Scatterplots)
+1. [Histograms](#Histograms)
+1. [Feature Importance](#Feature-Importance)
+1. [](#)
+1. [](#)
+1. [](#)
+1. [](#)
+1. [](#)
+
 
 #### Bar Charts
 
 #### Line Charts
-- Curve Fitting
 
 
 #### Scatterplots
+- Curve Fitting
 
 
 #### Histograms
@@ -222,6 +233,9 @@ for weights in ['uniform', 'distance']:
 
 plt.show()
 ```
+
+![Decision Boundary pic 1](Images/NB-decision-boundary-1.png)
+![Decision Boundary pic 2](Images/NB-decision-boundary-2.png)
 
 
 #### Confusion Matrix
