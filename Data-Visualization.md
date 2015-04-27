@@ -56,7 +56,9 @@ for month, ax in zip(months, axes.flatten()):
 
 ```
 
-![Bar plot and line plot](Images/feature_importance.png)
+![Bar plot and line plot](Images/mom_mle.png)
+
+- curve fitting, with KDE in Scipy
 
 ```python
 from scipy.stats import kde
@@ -79,7 +81,6 @@ plt.title("KDE of Bimodal Normal")
 
 
 #### Scatterplots
-- Curve Fitting
 
 
 #### Feature Importance
