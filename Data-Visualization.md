@@ -12,9 +12,9 @@
 1. [](#)
 
 
-#### Bar Charts
+### Bar Charts
 
-#### Line Charts
+### Line Charts
 
 
 #### Scatterplots
